@@ -3,51 +3,75 @@
   시간복잡도 O(n^2)을 목표로..
 */
 
-// const DIRECTION = ['RIGHT', 'DOWN', 'LEFT', 'UP'];
-// function snail(n){
-//   const obj = {};
-//   let cnt = 1;
-//   let ROW= 0, COL = 0;
-//   let r = 0, c = 0;
-//   let DIR = DIRECTION[0];
-//   while(cnt <= n*n){
-//     obj[`${ROW},${COL}`] = cnt;
-//     console.log(ROW,COL,obj[`${ROW},${COL}`], DIR)
-//     cnt++;
-//     if(DIR === 'RIGHT' && COL < n-1){
-//       COL++;
-//     }
-//     if(DIR === 'LEFT' && COL > 0 ){
-//       COL--;
-//     }
-//     if(DIR === 'DOWN' && ROW < n-1){
-//       ROW++;
-//     }
-//     if(DIR === 'UP' && ROW > 0){
-//       ROW--;
-//     }
-//     if(obj[`${ROW},${COL}`] || (ROW === 0 && COL=== 0) || (ROW === 0 && COL===n-1) || (ROW === n-1 && COL === n-1) || (ROW === n-1 && COL === 0)){
-//       console.log(r, c);
-//       DIRECTION.push(DIRECTION.shift());
-//       DIR = DIRECTION[0];
-//       if(DIR === 'RIGHT' && COL < n-1){
-//         COL++;
-//       }
-//       if(DIR === 'LEFT' && COL > 0 ){
-//         COL--;
-//       }
-//       if(DIR === 'DOWN' && ROW < n-1){
-//         ROW++;
-//       }
-//       if(DIR === 'UP' && ROW > 0){
-//         ROW--;
-//       }
-//     }
+/*
+  1. 현재 블록을 채운다.
+  2. 다음 블록의 위치 값과 상태 값을 확인한다.
+  3. 위치 값이 범위를 벗어나면 방향을 바꾼다.
+  4. 상태 값이 존재하면 방향을 바꾼다.
+  5. 방향에 따라 현재 위치 값을 변경한다.
+  
+*/
 
-//   }
-//   console.dir(obj);
-// };
+/*
+  n=4
 
-// snail(4);
+  [0,0] [0,1] [0,2] [0,3] [0,n]
+  [1,0] [1,1] [1,2] [1,3]
+  [2,0] [2,1] [2,2] [2,3]
+  [3,0] [3,1] [3,2] [3,3]
+                    [4,3]
+*/
+function snail(n){
+  const DIRECTION = ['RIGHT', 'DOWN', 'LEFT', 'UP'];
 
+  const obj = {};
+  let cnt = 1;
+  let ROW= 0, COL = 0;
+  let row = 0, col = 0;
+
+  let DIR = DIRECTION[0];
+  while(cnt <= n*n){
+    obj[`${row},${col}`] = cnt;
+    cnt++;
+    // 다음 위치값 변경
+    if(DIR === 'RIGHT'){
+      COL++;
+    }
+    if(DIR === 'LEFT'){
+      COL--;
+    }
+    if(DIR === 'DOWN'){
+      ROW++;
+    }
+    if(DIR === 'UP'){
+      ROW--;
+    }
+    if(obj[`${ROW},${COL}`] || (ROW === 0 && COL=== 0) || (ROW === 0 && COL === n) || (ROW === n && COL === n-1) || (ROW === n-1 && COL === -1)){
+      DIRECTION.push(DIRECTION.shift());
+      DIR = DIRECTION[0];
+      if(DIR === 'RIGHT'){
+        col++;
+      }
+      if(DIR === 'LEFT' ){
+        col--;
+      }
+      if(DIR === 'DOWN' ){
+        row++;
+      }
+      if(DIR === 'UP' ){
+        row--;
+      }
+      ROW = row;
+      COL = col;
+    }else{
+      row = ROW;
+      col = COL;
+    }
+  
+  }
+  console.dir(obj);
+};
+
+snail(4);
+snail(5);
 
