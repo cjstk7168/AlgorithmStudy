@@ -23,15 +23,21 @@
 */
 function snail(n){
   const DIRECTION = ['RIGHT', 'DOWN', 'LEFT', 'UP'];
+  let DIR = DIRECTION[0]; // 방향 값
 
-  const obj = {};
+  //Array 생성
+  const arr = [];
+  for(let i = 0; i < n; i++){
+    arr.push(new Array(n).fill(0));
+  }
+
   let cnt = 1;
-  let ROW= 0, COL = 0;
-  let row = 0, col = 0;
 
-  let DIR = DIRECTION[0];
+  let ROW= 0, COL = 0;  // 다음 포지션
+  let row = 0, col = 0; // 현재 포지션
+
   while(cnt <= n*n){
-    obj[`${row},${col}`] = cnt;
+    arr[row][col] = cnt;
     cnt++;
     // 다음 위치값 변경
     if(DIR === 'RIGHT'){
@@ -46,7 +52,7 @@ function snail(n){
     if(DIR === 'UP'){
       ROW--;
     }
-    if(obj[`${ROW},${COL}`] || (ROW === 0 && COL=== 0) || (ROW === 0 && COL === n) || (ROW === n && COL === n-1) || (ROW === n-1 && COL === -1)){
+    if( (ROW === 0 && COL=== 0) || (ROW === 0 && COL === n) || (ROW === n && COL === n-1) || (ROW === n-1 && COL === -1) || arr[ROW][COL] ){
       DIRECTION.push(DIRECTION.shift());
       DIR = DIRECTION[0];
       if(DIR === 'RIGHT'){
@@ -69,9 +75,9 @@ function snail(n){
     }
   
   }
-  console.dir(obj);
+  console.log(arr);
 };
 
 snail(4);
 snail(5);
-
+snail(6);
