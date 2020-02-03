@@ -11,7 +11,7 @@ function factorial(num) {
   let result = 1;
 
   for (let i = 1; i <= maxNum; i++) {
-    result = result * i;
+    result *= i;
   }
 
   console.log(result);
@@ -48,7 +48,7 @@ function snail(n) {
       value++;
     }
 
-    delta = -delta;
+    delta *= -1;
   }
 
   console.log(arr);
