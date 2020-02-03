@@ -1,10 +1,9 @@
-const answer1 = (n, sum = 1) => {
-  if (n === 0) {
-    return sum;
+const answer1 = (n) => {
+  if (n > 1) {
+    return n * answer1(n-1);
   }
 
-  sum = n * sum;
-  return answer1(n-1, sum);
+  return 1;
 };
 
 const answer2 = arrSize => {
@@ -14,7 +13,7 @@ const answer2 = arrSize => {
   }
 
   let direction = 1;
-  let col = 0, row = -1; // 최초 시작값을 0, 0 맞추기 위해 row는 -1에서 시작
+  let col = -1, row = 0; // 최초 시작값을 0, 0 맞추기 위해 col는 -1에서 시작
   let maxLimitCount = arrSize;
   let num = 1;
 
@@ -27,8 +26,8 @@ const answer2 = arrSize => {
 
     // 오른쪽, 왼쪽 방향
     for (let i = 0; i < maxLimitCount; i++) {
-      row += direction;
-      arr[col][row] = num;
+      col += direction;
+      arr[row][col] = num;
       num++;
     }
 
@@ -36,8 +35,8 @@ const answer2 = arrSize => {
 
     // 위, 아래 방향
     for (let i = 0; i < maxLimitCount; i++) {
-      col += direction;
-      arr[col][row] = num;
+      row += direction;
+      arr[row][col] = num;
       num ++;
     }
 
