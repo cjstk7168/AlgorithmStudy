@@ -14,14 +14,42 @@ function sugar(n){
   }
   // 3키로도 넣을 수 없다면,
   return -1;
-
 }
-
 console.log(sugar(18));
 console.log(sugar(4));
 console.log(sugar(6));
 console.log(sugar(9));
 console.log(sugar(11));
-console.log(sugar(20));
-console.log(sugar(21));
 console.log(sugar(99));
+
+
+function LRU(size, cities){
+  //const obj = {}; // 처음엔 오브젝트로 해볼까 생각함, 오브젝트를 사용하면 O(1)로 값을 찾을 수 있기 때문,
+  const CACHED = [];
+  let total = 0;
+  for(let i = 0; i < cities.length; i++){
+    if(CACHED.length < size){
+      CACHED.push(cities[i]);
+      total+=5; // 캐시가 없으므로 캐시 미스
+    }else{
+      let pos = CACHED.indexOf(cities[i]); // 캐시에 존재하는지? 없다면 -1
+      if(pos !== -1){
+        let item = CACHED.splice(pos,1);
+        CACHED.push(...item);
+        total+=1; // 캐시 힛
+      }else{
+        CACHED.shift();
+        CACHED.push(cities[i]);
+        total+=5; // 캐시 미스
+      }
+    }
+  }
+  return total;
+}
+
+console.log(LRU(3, ['Jeju', 'Pangyo', 'Seoul', 'NewYork', 'LA', 'Jeju', 'Pangyo', 'Seoul', 'NewYork', 'LA']))
+console.log(LRU(3, ['Jeju', 'Pangyo', 'Seoul', 'Jeju', 'Pangyo', 'Seoul', 'Jeju', 'Pangyo', 'Seoul'] ))
+console.log(LRU(2, ['Jeju', 'Pangyo', 'Seoul', 'NewYork', 'LA', 'SanFrancisco', 'Seoul', 'Rome', 'Paris', 'Jeju', 'NewYork', 'Rome'] ))
+console.log(LRU(5, ['Jeju', 'Pangyo', 'Seoul', 'NewYork', 'LA', 'SanFrancisco', 'Seoul', 'Rome', 'Paris', 'Jeju', 'NewYork', 'Rome']))
+console.log(LRU(2, ['Jeju', 'Pangyo', 'NewYork', 'NewYork']));
+console.log(LRU(0, ['Jeju', 'Pangyo', 'Seoul', 'NewYork', 'LA']))
