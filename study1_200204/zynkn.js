@@ -1,13 +1,43 @@
 
+// 시간복잡도 O(n-1);
+function factorial(n){
+  let total = 1;
+  for(let m = n; m > 1; m--){
+    total*=m;
+  };
+  return total;
+}
+// recursive
+// 시간 복잡도 O(n);
+function factorial2(n){
+  if(n > 1){
+    return n * factorial2(n-1);
+  }else{
+    return 1;
+  }
+}
+// Joke..
+// 시간 복잡도 O(1)
+function factorial3(n){
+  if(n > 1){
+    return `${n}*${n-1}!`;
+  }
+  return `null`;
+}
+console.log(factorial(10));
+console.log(factorial2(10));
+console.log(factorial3(10));
+
+
 /*
   시간복잡도 O(n^2)을 목표로..
 */
 
 /*
   1. 현재 블록을 채운다.
-  2. 다음 블록의 위치 값과 상태 값을 확인한다.
+  2. 다음 블록의 위치 값과 숫자 값을 확인한다.
   3. 위치 값이 범위를 벗어나면 방향을 바꾼다.
-  4. 상태 값이 존재하면 방향을 바꾼다.
+  4. 숫자 값이 존재하면 방향을 바꾼다.
   5. 방향에 따라 현재 위치 값을 변경한다.
   
 */
@@ -31,10 +61,10 @@ function snail(n){
     arr.push(new Array(n).fill(0));
   }
 
-  let cnt = 1;
+  let cnt = 1;  // 숫자 값
 
-  let ROW= 0, COL = 0;  // 다음 포지션
-  let row = 0, col = 0; // 현재 포지션
+  let ROW= 0, COL = 0;  // 다음 위치값
+  let row = 0, col = 0; // 현재 위치값
 
   while(cnt <= n*n){
     arr[row][col] = cnt;
