@@ -35,9 +35,9 @@ console.log(factorial3(10));
 
 /*
   1. 현재 블록을 채운다.
-  2. 다음 블록의 위치 값과 상태 값을 확인한다.
+  2. 다음 블록의 위치 값과 숫자 값을 확인한다.
   3. 위치 값이 범위를 벗어나면 방향을 바꾼다.
-  4. 상태 값이 존재하면 방향을 바꾼다.
+  4. 숫자 값이 존재하면 방향을 바꾼다.
   5. 방향에 따라 현재 위치 값을 변경한다.
   
 */
@@ -61,10 +61,10 @@ function snail(n){
     arr.push(new Array(n).fill(0));
   }
 
-  let cnt = 1;
+  let cnt = 1;  // 숫자 값
 
-  let ROW= 0, COL = 0;  // 다음 포지션
-  let row = 0, col = 0; // 현재 포지션
+  let ROW= 0, COL = 0;  // 다음 위치값
+  let row = 0, col = 0; // 현재 위치값
 
   while(cnt <= n*n){
     arr[row][col] = cnt;
