@@ -14,13 +14,14 @@ const getKeyOfMinValue = cache => {
 function solution(cacheSize, cities) {
   let cost = 0;
   cache = {};
+  // O(N)
   for (let [priority, city] of cities.entries()) {
-    console.log(cache);
     if (city in cache) {
       cost += 1;
       cache[city] = priority + 1;
     } else {
       if (Object.keys(cache).length === cacheSize) {
+        // O(30)
         key = getKeyOfMinValue(cache);
         delete cache[extractedKey];
       }
