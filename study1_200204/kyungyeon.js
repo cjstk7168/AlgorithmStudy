@@ -7,10 +7,7 @@ const answer1 = (n) => {
 };
 
 const answer2 = arrSize => {
-  const arr = [[], []];
-  for (let i = 0; i < arrSize; i++) {
-    arr[i] = new Array(arrSize).fill(0);
-  }
+  const arr = new Array(arrSize).fill(0).map(() => new Array());
 
   let direction = 1;
   let col = -1, row = 0; // 최초 시작값을 0, 0 맞추기 위해 col는 -1에서 시작
