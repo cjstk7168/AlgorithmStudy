@@ -15,7 +15,7 @@ namespace AlgorithmStudy
                     int n = Convert.ToInt32(Console.ReadLine());
                     if (n > 0 && n < 15)
                     {
-                        Console.WriteLine("Factorial : " + Factorial(n));
+                        Console.WriteLine("Factorial : " + Fact(n));
                         break;
                     }
                     else
@@ -32,12 +32,12 @@ namespace AlgorithmStudy
             Console.WriteLine("end");
         }
 
-        static int Factorial(int i)
+        static int Fact(int i)
         {
             if (i == 1)
                 return 1;
 
-            return i * Factorial(i - 1);
+            return i * Fact(i - 1);
         }
     }
 }
