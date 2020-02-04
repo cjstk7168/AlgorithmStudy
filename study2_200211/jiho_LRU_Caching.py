@@ -1,6 +1,3 @@
-import heapq
-
-
 def solution(cache_size, datas):
     cost = 0
     cache = dict()

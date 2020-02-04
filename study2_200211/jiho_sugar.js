@@ -4,7 +4,7 @@ const solution = n => {
   while (i >= 0) {
     remain = n - i * 5;
     if (remain % 3 === 0) {
-      return i + parseInt(remain / 3);
+      return i + remain / 3;
     }
     i -= 1;
   }
