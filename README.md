@@ -21,7 +21,7 @@
 2. 매월 2, 4째주 목요일 (휴일인 경우 조정) 19:00~ 로 합니다.
 
 ## 커뮤니티 가이드
-[깃허브 커뮤니티 가이드라인](https://github.blog/2016-10-19-introducing-github-community-guidelines/)를 준수합니다. 
+[깃허브 커뮤니티 가이드라인](https://github.blog/2016-10-19-introducing-github-community-guidelines/)을 준수합니다. 
 
 ### 따뜻하고 열린 마음을 가져주세요 
 다른 참여자는 당신과 다른 경험이나 배경을 가집니다. 그렇다고 그들이 아이디어가 없다는 것은 아닙니다. 새로운 참여자를 따뜻하게 맞아주고 함께 토론했으면 좋겠습니다.
