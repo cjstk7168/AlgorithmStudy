@@ -3,6 +3,7 @@ def solution(cache_size, datas):
     cache = dict()
     # O(N)
     for idx, data in enumerate(datas):
+        data = data.lower()
         if cache.get(data, False):
             cost += 1
             cache[data] = idx + 1
@@ -73,3 +74,5 @@ print(
         ],
     )
 )
+
+print(solution(1, ["jeju", "Jeju", "Jeju",],))

@@ -16,13 +16,14 @@ function solution(cacheSize, cities) {
   cache = {};
   // O(N)
   for (let [priority, city] of cities.entries()) {
+    city = city.toLowerCase();
     if (city in cache) {
       cost += 1;
       cache[city] = priority + 1;
     } else {
       if (Object.keys(cache).length === cacheSize) {
         // O(30)
-        key = getKeyOfMinValue(cache);
+        extractedKey = getKeyOfMinValue(cache);
         delete cache[extractedKey];
       }
       cache[city] = priority;
@@ -32,46 +33,4 @@ function solution(cacheSize, cities) {
   return cost;
 }
 
-console.log(
-  solution(3, [
-    "Jeju",
-    "Pangyo",
-    "Seoul",
-    "NewYork",
-    "LA",
-    "Jeju",
-    "Pangyo",
-    "Seoul",
-    "NewYork",
-    "LA"
-  ])
-);
-console.log(
-  solution(3, [
-    "Jeju",
-    "Pangyo",
-    "Seoul",
-    "Jeju",
-    "Pangyo",
-    "Seoul",
-    "Jeju",
-    "Pangyo",
-    "Seoul"
-  ])
-);
-console.log(
-  solution(5, [
-    "Jeju",
-    "Pangyo",
-    "Seoul",
-    "NewYork",
-    "LA",
-    "SanFrancisco",
-    "Seoul",
-    "Rome",
-    "Paris",
-    "Jeju",
-    "NewYork",
-    "Rome"
-  ])
-);
+console.log(solution(1, ["jeju", "Jeju", "Jeju"]));
