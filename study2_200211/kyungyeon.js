@@ -24,38 +24,50 @@ const question1 = N => {
   return count;
 };
 
-const question2 = (cacheSize, STR) => {
+const question2 = (cacheSize, S) => {
+  console.time();
   let point = 0;
-  let cache = [];
+  let cache = {};
+  /*
+  1. 캐시 크기만큼 item 생성
+  {
+    item: 1,
+    item: 2,
+    item: 3,
+    ...
+  }
+   */
 
-  for (const item of STR) {
+  for (const item of S) {
     if (cacheSize === 0) {
       point += 5;
       continue;
     }
 
     const str = item.toLowerCase();
-    if (cache.includes(str)) {
-      cache.slice(cache.indexOf(str), 1);
-      cache = [str, ...cache];
+    if (cache[str]) {
+      const deleteIndex = Object.keys(cache).findIndex(item => item === str);
+      delete cache[str];
+      Object.keys(cache).forEach(item => cache[item] < deleteIndex && cache[item]++);
+      cache[str] = 1;
+
       point += 1;
       continue;
     }
 
-    if (cache.length < cacheSize) {
-      cache.push(str);
-      point += 5;
-      continue;
+    const deleteIndex = Object.keys(cache).find(item => cache[item] === cacheSize);
+    if (deleteIndex) {
+      delete cache[deleteIndex];
     }
 
-    if (cache.length >= cacheSize) {
-      cache.pop();
-    }
+    Object.keys(cache).forEach(item => cache[item]++);
 
-    cache = [str, ...cache];
+    cache[str] = 1;
     point += 5;
+
   }
 
+  console.timeEnd();
   return point;
 };
 
@@ -71,3 +83,13 @@ console.log('answer2', question2(2, ['Jeju', 'Pangyo', 'Seoul', 'NewYork', 'LA',
 console.log('answer2', question2(5, ['Jeju', 'Pangyo', 'Seoul', 'NewYork', 'LA', 'SanFrancisco', 'Seoul', 'Rome', 'Paris', 'Jeju', 'NewYork', 'Rome']));
 console.log('answer2', question2(2, ['Jeju', 'Pangyo', 'NewYork', 'newyork']));
 console.log('answer2', question2(0, ['Jeju', 'Pangyo', 'Seoul', 'NewYork', 'LA']));
+
+/*
+결과값
+46
+21
+60
+48
+16
+25
+ */
