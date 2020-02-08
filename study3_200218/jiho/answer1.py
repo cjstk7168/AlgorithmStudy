@@ -1,15 +1,14 @@
-def answer1():
-    data = []
-    max_length = 0
-    for _ in range(5):
-        row = input()
-        max_length = max(max_length, len(row))
-        data.append(row)
+def answer1(words):
+    max_length = max([len(word) for word in words])
 
     ret = []
     for c in range(max_length):
-        for r in range(5):
-            if len(data[r]) > c:
-                ret.append(data[r][c])
+        for r in range(len(words)):
+            if len(words[r]) > c:
+                ret.append(words[r][c])
 
-    print(''.join(ret))
+    return "".join(ret)
+
+
+print(answer1(["ABCDE", "abcde", "01234", "FGHIJ", "fghij",]))
+

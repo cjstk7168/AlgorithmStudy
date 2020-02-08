@@ -1,25 +1,34 @@
-n = int(input())
-ret = []
-paths = []
-for _ in range(n):
-    path = input().split("\\")
-    paths.append(path)
-
-paths.sort()
-directory_stack = []
-for path in paths:
-    directories = path
-    depth = 0
-    for directory in directories:
-        if len(directory_stack) > depth and directory == directory_stack[depth]:
-            depth += 1
-        else:
-            directory_stack = directory_stack[:depth]
-            directory_stack.append(directory)
-            ret.append(f"{'_' * depth }{directory}")
+def answer2(paths):
+    result = []
+    paths = [path.split("\\") for path in paths]
+    paths.sort()
+    path_stack = []
+    for path in paths:
+        depth = 0
+        for idx, directory_name in enumerate(path):
+            if len(path_stack) <= idx:
+                path_stack.append(directory_name)
+                result.append("_" * depth + directory_name)
+            else:
+                if path_stack[idx] != directory_name:
+                    path_stack = path_stack[:idx]
+                    path_stack.append(directory_name)
+                    result.append("_" * depth + directory_name)
             depth += 1
 
-for r in ret:
-    print(r)
-        
+    return result
 
+
+print(
+    answer2(
+        [
+            "WINNT\SYSTEM32\CONFIG",
+            "GAMES",
+            "WINNT\DRIVERS",
+            "HOME",
+            "WIN\SOFT",
+            "GAMES\DRIVERS",
+            "WINNT\SYSTEM32\CERTSRV\CERTCO~1\X86",
+        ]
+    )
+)
