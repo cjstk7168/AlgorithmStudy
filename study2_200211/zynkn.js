@@ -24,7 +24,7 @@ console.log(sugar(99));
 
 
 function LRU(size, cities){
-  //const obj = {}; // 처음엔 오브젝트로 해볼까 생각함, O(1)로 값을 찾을 수 있기 때문,
+  //const obj = {}; // 캐시를 해쉬 맵으로 관리하면 O(1)로 값을 찾을 수 있을 것 같다,
   const CACHED = [];
   let total = 0;
   for(let i = 0; i < cities.length; i++){
