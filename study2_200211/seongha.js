@@ -40,3 +40,39 @@ sugar(4);
 sugar(6);
 sugar(9);
 sugar(11);
+
+const lru = (cacheSize, cities) => {
+  let point = 0;
+  let cache = {};
+
+  for (const city of cities) {
+    const str = city.toLowerCase();
+
+    Object.keys(cache).forEach(item => cache[item]++);
+
+    if (cache[str]) {
+      cache[str] = 1;
+      point += 1;
+      continue;
+    }
+
+    // 여기를 좀 더 리팩토링 하고 싶었는데....! 시간 관계상
+    const deleteIndex = Object.keys(cache).find(item => cache[item] === cacheSize);
+    if (deleteIndex) {
+      delete cache[deleteIndex];
+    }
+
+    cache[str] = 1;
+    point += 5;
+  }
+
+  return point;
+};
+
+lru(3, ['Jeju', 'Pangyo', 'Seoul', 'NewYork', 'LA', 'Jeju', 'Pangyo', 'Seoul', 'NewYork', 'LA']);
+lru(3, ['Jeju', 'Pangyo', 'Seoul', 'Jeju', 'Pangyo', 'Seoul', 'Jeju', 'Pangyo', 'Seoul']);
+lru(2, ['Jeju', 'Pangyo', 'Seoul', 'NewYork', 'LA', 'SanFrancisco', 'Seoul', 'Rome', 'Paris', 'Jeju', 'NewYork', 'Rome']);
+lru(5, ['Jeju', 'Pangyo', 'Seoul', 'NewYork', 'LA', 'SanFrancisco', 'Seoul', 'Rome', 'Paris', 'Jeju', 'NewYork', 'Rome']);
+lru(2, ['Jeju', 'Pangyo', 'NewYork', 'newyork']);
+lru(0, ['Jeju', 'Pangyo', 'Seoul', 'NewYork', 'LA']);
+
