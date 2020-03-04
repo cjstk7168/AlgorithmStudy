@@ -5,12 +5,10 @@ const question1 = s => {
 };
 
 const question2 = num => {
-  const decNum = num.toString(2);
-
-  const numberOneCount = decNum.replace(/0/g, '').length;
+  const numberOneCount = num.toString(2).match(/1/g).length;
 
   for (let i = num + 1; ; i++) {
-    const iOneCount = i.toString(2).replace(/0/g, '').length;
+    const iOneCount = i.toString(2).match(/1/g).length;
     if (iOneCount === numberOneCount) {
       return i;
     }
