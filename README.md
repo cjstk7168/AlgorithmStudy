@@ -1,6 +1,13 @@
 # AlgorithmStudy
 알고리즘 스터디입니다.
 
+<div align=center>
+<a href="https://github.com/cjstk7168/AlgorithmStudy/graphs/contributors">
+  <img src="https://opencollective.com/AlgorithmStudy/contributors.svg?width=720">
+</a>
+</div>
+
+
 ---
 ## 모임 진행 방식
 1. 총 10명으로 진행합니다.
